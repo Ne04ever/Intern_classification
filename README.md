@@ -1,8 +1,10 @@
 # Intern_classification
 First semester programing project
 ### Team members:
-  * Vaseem ShuaibKoorithodi
+  * [Vaseem Shuaib Koorithodi](https://github.com/Ne04ever/Intern_classification)
   * [Farrukh Wajahat Ullah](https://github.com/Farrukh-Ullah/python_project)
+### [Presentation live Environment](https://share.streamlit.io/farrukh-ullah/python_project/streamlit/hr_analytics_main.py)
+
 ## Project overview
 * First semester programing project
 * Predicting and inters decision to work a company
@@ -11,7 +13,7 @@ First semester programing project
 * Used Logistic regression and Random forest models 
 * Created streamlit for this project
 
-## Code andResources
+## Code and Resources
 * kaggle: https://www.kaggle.com/arashnic/hr-analytics-job-change-of-data-scientists?select=aug_test.csv
 * Streamlit: https://streamlit.io/ </br>
 * Streamlit Doc: https://docs.streamlit.io/ </br>
