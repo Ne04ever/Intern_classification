@@ -4,10 +4,17 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import seaborn as sns
 from hr_analytics_variables import *
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import mean_absolute_error
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn import preprocessing
 
 # Importing data
 eda_data = pd.read_csv(r'https://raw.githubusercontent.com/Farrukh-Ullah/python_project/master/notebooks/clean.csv')
 data = pd.read_csv(r'https://raw.githubusercontent.com/Farrukh-Ullah/python_project/master/notebooks/df.csv', index_col=False)
+df = pd.read_csv(r'https://raw.githubusercontent.com/Farrukh-Ullah/python_project/master/notebooks/model_df.csv')
 pt1 = pd.pivot_table(eda_data, index='target',columns = 'experience_lvl', values='city_dev_perc')
 pt2 = pd.pivot_table(eda_data, index=['target','company_class',], values='city_dev_perc')
 pt3 = pd.pivot_table(eda_data, index=['target','gender',], values='training_hours')
@@ -19,6 +26,24 @@ intern_stays = eda_df.loc[eda_df['target'] == 0]
 bar_chart = intern_stays[
     ['gender', 'relevent_experience', 'enrolled_university', 'education_level', 'major_discipline', 'company_type',
     'last_new_job', 'experience_lvl', 'company_class']]
+
+model_df = pd.get_dummies(df)
+# Models part
+lr = LogisticRegression()
+x = model_df.drop('target', axis=1)
+y = model_df['target']
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=2)
+scaler = preprocessing.StandardScaler().fit(x_train)
+scaler = preprocessing.StandardScaler().fit(x_train)
+scaler.mean_
+scaler.scale_
+x_scaled = scaler.transform(x_train)
+lr.fit(x_scaled, y_train)
+pred = lr.predict(x_test)
+rf = RandomForestRegressor()
+rf.fit(x_train, y_train)
+pred1 = rf.predict(x_test)
+
 
 
 
@@ -158,32 +183,16 @@ def set_Piyottbl():
     st.dataframe(pt4)
 
 def set_classmod():
-    st.title("*Classification Model:*")
-    st.write("*Since we have to predict whether candidate stays or leaves we decided to go with the random forest model.*")
-    code = '''
-    #importing libraries
-    from sklearn.metrics import mean_absolute_error
-    from sklearn.ensemble import RandomForestRegressor
-    from sklearn.model_selection import train_test_split
-              
-    #loading data
-    df = pd.read_csv('model_df.csv')
-    model_df = pd.get_dummies(df)
-              
-    #splitting dataset
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=2)
-              
-    #applying model
-    rf = RandomForestRegressor()
-    rf.fit(x_train,y_train)
-    pred1 = rf.predict(x_test)
-    mean_absolute_error(y_test,pred1)
-              '''
-    st.code(code, language='python')
-    st.write(">***0.282562630480167***")
+    st.title("*Classification Model*")
+    st.write("We applied two classification models, logistics regression and random forest model. They gave a mean absolute error of ***0.563*** and ***0.283*** For the models. These results can be improved further by optimizing")
+    st.subheader("*Prediction Using Regression Model*")
+    st.write("##### Accuracy:")
+    st.write(mean_absolute_error(y_test, pred))
+    st.set_option('deprecation.showPyplotGlobalUse', False)
 
-
-
+    st.subheader("*Prediction Using Random Forest*")
+    st.write("##### Accuracy:")
+    st.write(mean_absolute_error(y_test, pred1))
 
 
 
