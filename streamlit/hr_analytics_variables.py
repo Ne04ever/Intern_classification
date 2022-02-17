@@ -20,10 +20,10 @@ We are presenting our project using streamlit platform. We used streamlite becau
 intro_herramientas_fuentes = '''
 ---
 ## Sources and References
-kaggle: https://www.kaggle.com/arashnic/hr-analytics-job-change-of-data-scientists?select=aug_test.csv
-Streamlit: https://streamlit.io/ </br>
-Streamlit Doc: https://docs.streamlit.io/ </br>
-Concepts From Streamlit Gallery: https://share.streamlit.io/casiopa/eda-imdb/main/src/utils/streamlit/EDA_IMDb_main.py
+[Kaggle]( https://www.kaggle.com/arashnic/hr-analytics-job-change-of-data-scientists?select=aug_test.csv) </br>
+[Streamlit](https://streamlit.io/) </br>
+[Streamlit Doc](https://docs.streamlit.io/) </br>
+[Concepts From Streamlit Gallery](https://share.streamlit.io/casiopa/eda-imdb/main/src/utils/streamlit/EDA_IMDb_main.py)
 
 
 ## Used tools
